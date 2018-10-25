@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+
+# convenience functions
+source "$(cd $(dirname $0); cd ..; pwd)"/bin/util/common.sh
+
+if [[ "${STACK}" == "heroku-16" || "${STACK}" == "heroku-18" ]]; then
+	echo "\"${STACK}\" stack" && exit 0
+else
+
+error <<-EOF
+		Application not supported by this buildpack!
+
+		The 'skriptfabrik/image-optimizers' buildpack is set on this application, but no
+		supported stack has been detected.
+
+		For more information, refer to the following documentation:
+
+		https://devcenter.heroku.com/articles/stack
+		https://github.com/skriptfabrik/image-optimizers-buildpack
+	EOF
+fi

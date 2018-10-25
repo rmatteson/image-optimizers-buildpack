@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+WORKING_DIR=$(cd $(dirname $0); cd ..; pwd)
+VENDOR_DIR="vendor/optimizers"
+
+# convenience functions
+source "${WORKING_DIR}/bin/util/common.sh"
+
+# use err_trap from common.sh on error
+# we do not 'set -o errtrace', because that would cause subshell failures to fire the trap twice, e.g. with someval=$(func_that_fails)
+trap 'err_trap' ERR
+
+status "Adding image optimizer binaries"
+
+# Marking binaries as executable
+chmod -R +x "${WORKING_DIR}/${VENDOR_DIR}"
+
+# Creating target directory
+mkdir -p "${BUILD_DIR}/${VENDOR_DIR}"
+
+# Switch to binaries folder
+cd "${WORKING_DIR}/${VENDOR_DIR}/${STACK}"
+
+# Copy to binaries folder
+cp -v * "${BUILD_DIR}/${VENDOR_DIR}" | indent
+
+# Switch back to working directory
+cd "${WORKING_DIR}"
+
+# Add binaries path to `PATH` environment
+export PATH="${PATH}":"${HOME}"/"${VENDOR_DIR}"
+
+status "Creating symlinks to optimizers for next buildpack(s)"
+
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/advpng" /tmp/codon/vendor/bin/advpng
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/gifsicle" /tmp/codon/vendor/bin/gifsicle
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegoptim" /tmp/codon/vendor/bin/jpegoptim
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegtran" /tmp/codon/vendor/bin/jpegtran
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/optipng" /tmp/codon/vendor/bin/optipng
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngcrush" /tmp/codon/vendor/bin/pngcrush
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngquant" /tmp/codon/vendor/bin/pngquant
+
+status "Adding profile.d script to add binaries to PATH at container start"
+
+mkdir -p "${BUILD_DIR}/.profile.d"
+
+cd "${WORKING_DIR}/profile.d"
+
+cp -v * "${BUILD_DIR}/.profile.d/" | indent
+
+cd ${WORKING_DIR}
+
+status "Added image optimizer versions"
+
+echo "advpng: $(advpng --version | head -1)" | indent
+echo "gifsicle: $(gifsicle --version | head -1)" | indent
+echo "jpegoptim: $(jpegoptim --version | head -1)" | indent
+echo "jpegtran: $(jpegtran -V /dev/null 2>&1 | head -1)" | indent
+echo "optipng: $(optipng --version | head -1)" | indent
+echo "pngcrush: $(pngcrush -version)" | indent
+echo "pngquant: $(pngquant --version)" | indent
