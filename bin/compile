@@ -53,7 +53,7 @@ cd "${WORKING_DIR}/profile.d"
 
 cp -v * "${BUILD_DIR}/.profile.d/" | indent
 
-cd "${WORKING_DIR}/${VENDOR_DIR}"
+cd "${BUILD_DIR}/${VENDOR_DIR}"
 
 ls -Al
 status "Added image optimizer versions"
