@@ -35,13 +35,13 @@ export PATH="${PATH}":"${HOME}"/"${VENDOR_DIR}"
 
 status "Creating symlinks to optimizers for next buildpack(s)"
 
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/advpng" "#{BUILD_DIR}/advpng"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/gifsicle" "#{BUILD_DIR}/gifsicle"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegoptim" "#{BUILD_DIR}/jpegoptim"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegtran" "#{BUILD_DIR}/jpegtran"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/optipng" "#{BUILD_DIR}/optipng"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngcrush" "#{BUILD_DIR}/pngcrush"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngquant" "#{BUILD_DIR}/pngquant"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/advpng" "${BUILD_DIR}/advpng"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/gifsicle" "${BUILD_DIR}/gifsicle"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegoptim" "${BUILD_DIR}/jpegoptim"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegtran" "${BUILD_DIR}/jpegtran"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/optipng" "${BUILD_DIR}/optipng"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngcrush" "${BUILD_DIR}/pngcrush"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngquant" "${BUILD_DIR}/pngquant"
 
 status "Adding profile.d script to add binaries to PATH at container start"
 
