@@ -35,13 +35,13 @@ export PATH="${PATH}":"${HOME}"/"${VENDOR_DIR}"
 
 status "Creating symlinks to optimizers for next buildpack(s)"
 
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/advpng" "${BUILD_DIR}/advpng"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/gifsicle" "${BUILD_DIR}/gifsicle"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegoptim" "${BUILD_DIR}/jpegoptim"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegtran" "${BUILD_DIR}/jpegtran"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/optipng" "${BUILD_DIR}/optipng"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngcrush" "${BUILD_DIR}/pngcrush"
-ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngquant" "${BUILD_DIR}/pngquant"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/advpng" "${HOME}/bin/advpng"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/gifsicle" "${HOME}/bin/gifsicle"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegoptim" "${HOME}/bin/jpegoptim"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegtran" "${HOME}/bin/jpegtran"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/optipng" "${HOME}/bin/optipng"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngcrush" "${HOME}/bin/pngcrush"
+ln -s "${BUILD_DIR}/${VENDOR_DIR}/pngquant" "${HOME}/bin/pngquant"
 
 status "Adding profile.d script to add binaries to PATH at container start"
 
@@ -60,7 +60,7 @@ echo "gifsicle: $(gifsicle --version | head -1)" | indent
 echo "jpegoptim: $(jpegoptim --version | head -1)" | indent
 echo "jpegtran: $(jpegtran -V /dev/null 2>&1 | head -1)" | indent
 echo "optipng: $(optipng --version | head -1)" | indent
-echo "pngcrush: $(./pngcrush -version)" | indent
-echo "pngquant: $(./pngquant --version)" | indent
+echo "pngcrush: $(pngcrush -version)" | indent
+echo "pngquant: $(pngquant --version)" | indent
 
 cd ${WORKING_DIR}
