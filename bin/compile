@@ -64,3 +64,5 @@ echo "pngcrush: $(pngcrush -version)" | indent
 echo "pngquant: $(pngquant --version)" | indent
 
 cd ${WORKING_DIR}
+
+ls -AlR | grep vendor
