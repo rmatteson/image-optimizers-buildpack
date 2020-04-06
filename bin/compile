@@ -54,6 +54,7 @@ cd "${WORKING_DIR}/profile.d"
 cp -v * "${BUILD_DIR}/.profile.d/" | indent
 
 cd ${WORKING_DIR}
+ls -AlR
 
 status "Added image optimizer versions"
 
