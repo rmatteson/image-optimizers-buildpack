@@ -34,7 +34,7 @@ cd "${WORKING_DIR}"
 export PATH="${PATH}":"${HOME}"/"${VENDOR_DIR}"
 
 status "Creating symlinks to optimizers for next buildpack(s)"
-
+printenv
 ln -s "${BUILD_DIR}/${VENDOR_DIR}/advpng" /tmp/codon/vendor/bin/advpng
 ln -s "${BUILD_DIR}/${VENDOR_DIR}/gifsicle" /tmp/codon/vendor/bin/gifsicle
 ln -s "${BUILD_DIR}/${VENDOR_DIR}/jpegoptim" /tmp/codon/vendor/bin/jpegoptim
