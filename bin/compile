@@ -33,7 +33,7 @@ cd "${WORKING_DIR}"
 # Add binaries path to `PATH` environment
 export PATH="${PATH}":"${HOME}"/"${VENDOR_DIR}"
 
-status "Creating symlinks to optimizers for next buildpack(s)"
+#status "Creating symlinks to optimizers for next buildpack(s)"
 #printenv
 #ls "${BUILD_DIR}/${VENDOR_DIR}"
 
@@ -54,6 +54,8 @@ cd "${WORKING_DIR}/profile.d"
 cp -v * "${BUILD_DIR}/.profile.d/" | indent
 
 cd "${BUILD_DIR}/${VENDOR_DIR}"
+
+ls -Al
 status "Added image optimizer versions"
 
 echo "advpng: $(advpng --version | head -1)" | indent
